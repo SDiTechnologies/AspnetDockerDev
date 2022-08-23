@@ -1,0 +1,34 @@
+version: "3"
+services:
+
+# # begin definition of services
+# # NOTE: Do not run both services simultaneously
+
+# # build a development container to run the non-production build of the app
+#   aspnetapprun:
+#     build:
+#       # start in the following directory with the specified Dockerfile
+#       context: ./src
+#       dockerfile: Dockerfile.run
+#     restart: always
+#     command: dotnet run
+#     network_mode: host
+#     expose:
+#       - 7068
+#       - 5162
+#     environment:
+#       ASPNETCORE_URLS: "https://+:7068;http://+:5162"
+
+  ## build a production instance of the app for deployment  
+  aspnetappbuild:
+    build:
+      context: ./src
+      dockerfile: Dockerfile.build
+    restart: always
+    command: dotnet MvcWebApp.dll
+    network_mode: host
+    expose:
+      - 7068
+      - 5162
+    environment:
+      ASPNETCORE_URLS: "https://+:7068;http://+:5162"

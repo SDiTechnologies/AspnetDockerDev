@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS run
+WORKDIR /src
+
+ENV \
+    APP=MvcWebApp
+    
+COPY *.sln .
+COPY $APP/*.csproj ./$APP/
+RUN dotnet restore
+
+COPY $APP/. ./$APP/
+
+WORKDIR /src/$APP
+    
+# generate certs
+RUN dotnet dev-certs https
