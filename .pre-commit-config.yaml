@@ -15,7 +15,7 @@ repos:
       name: dotnet format
       language: dotnet
       types_or: ['c#', 'vb']
-      entry: dotnet format ./src/App.sln --include
+      entry: dotnet format --include
 
 
 # -   repo: https://github.com/psf/black
