@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS run
 WORKDIR /src
 
 ENV \
-    APP=MvcWebApp
-    
+    APP=WebApi
+
 COPY *.sln .
 COPY $APP/*.csproj ./$APP/
 RUN dotnet restore
@@ -11,6 +11,6 @@ RUN dotnet restore
 COPY $APP/. ./$APP/
 
 WORKDIR /src/$APP
-    
+
 # generate certs
 RUN dotnet dev-certs https

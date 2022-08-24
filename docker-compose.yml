@@ -19,7 +19,7 @@ services:
 #     environment:
 #       ASPNETCORE_URLS: "https://+:7068;http://+:5162"
 
-  ## build a production instance of the app for deployment  
+  ## build a production instance of the app for deployment
   aspnetappbuild:
     build:
       context: ./src
