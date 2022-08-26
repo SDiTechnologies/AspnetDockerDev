@@ -17,7 +17,6 @@ repos:
       types_or: ['c#', 'vb']
       entry: dotnet format src/App.sln --include
 
-
 # -   repo: https://github.com/psf/black
 #     rev: 21.12b0
 #     hooks:
