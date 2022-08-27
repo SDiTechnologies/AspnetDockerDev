@@ -10,13 +10,21 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 //     opt.UseInMemoryDatabase("TodoList"));
 
-// use sqlite
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+// // use sqlite
+// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//     options.UseSqlite(connectionString));
 
 // use a proper database connection...
+// use postgres
+var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
+// // use mssqlserver
+// var connectionString = builder.Configuration.GetConnectionString("MssqlConnection");
+// builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//     options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
 
