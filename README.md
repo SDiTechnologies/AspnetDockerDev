@@ -82,7 +82,6 @@ dotnet-ef
 
 ```
 
-
 install:
     DEMONSTRATE INSTALL SCRIPT
 
@@ -96,4 +95,17 @@ npgsql resources:
     - https://www.npgsql.org/
     - https://github.com/npgsql/Npgsql
     - https://github.com/npgsql/efcore.pg
+
+generate uuid in postgres:
+    - https://stackoverflow.com/questions/12505158/generating-a-uuid-in-postgres-for-insert-statement
+
+async console app in csharp:
+    - https://stackoverflow.com/questions/17630506/using-async-in-a-console-application-in-c-sharp
+    - https://stackoverflow.com/questions/41407221/startup-cs-in-a-self-hosted-net-core-console-application
+    - https://github.com/sonicmouse/Host.CreateDefaultBuilder.Example
+
+faker data in csharp:
+    - https://blog.elmah.io/easy-generation-of-fake-dummy-data-in-c-with-faker-net/
+    - https://github.com/oriches/faker-cs
+    - https://github.com/slashdotdash/faker-cs
 -->
