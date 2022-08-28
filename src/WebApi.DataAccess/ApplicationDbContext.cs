@@ -25,6 +25,8 @@ namespace WebApi.DataAccess
 
         // Public Library Organizations objects
         public virtual DbSet<Book> Books { get; set; }
+
+        public virtual DbSet<Address> Addresses { get; set; }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>

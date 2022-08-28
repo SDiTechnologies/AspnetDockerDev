@@ -4,7 +4,7 @@ namespace WebApi.DataFaker;
 
 public partial class DataProvider
 {
-    public DataProvider() { }
+    // public DataProvider() { }
 
     public Book NewBook()
     {
