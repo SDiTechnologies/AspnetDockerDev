@@ -22,6 +22,9 @@ namespace WebApi.DataAccess
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Recipe> Recipes { get; set; }
         public virtual DbSet<Ingredient> Ingredients { get; set; }
+
+        // Public Library Organizations objects
+        public virtual DbSet<Book> Books { get; set; }
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>

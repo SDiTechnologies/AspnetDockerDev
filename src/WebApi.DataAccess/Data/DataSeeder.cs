@@ -2,6 +2,7 @@ using WebApi.Domain.Models;
 using WebApi.Domain.Models.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace WebApi.DataAccess.Data
 {
@@ -40,6 +41,18 @@ namespace WebApi.DataAccess.Data
                 context.Ingredients.AddRange(ingredients);
                 context.SaveChanges();
             }
+
+            if (!context.Books.Any())
+            {
+                var books = new List<Book>()
+                {
+                    new Book { /* Id = 1 */ Title = "You Left Me In San Fran Cheesy", ReleaseDate = DateTime.UtcNow },
+                    new Book { /* Id = 2 */ Title = "Pasta La Vista, Baby",  ReleaseDate = DateTime.UtcNow}
+                };
+                context.Books.AddRange(books);
+                context.SaveChanges();
+            }
+
         }
     }
 }

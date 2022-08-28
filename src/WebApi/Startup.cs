@@ -30,6 +30,7 @@ public class Startup
         {
             options.UseNpgsql(connectionString);
         });
+
         // services.AddDbContext<ApplicationDbContext>(options =>
         //     options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 
