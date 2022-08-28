@@ -2,6 +2,12 @@ namespace WebApi.Models;
 
 public class Book
 {
+    public Book() { }
+    public Book(string title, DateTime releaseDate)
+    {
+        Title = title;
+        ReleaseDate = releaseDate;
+    }
     public Guid Id { get; set; }
     public string? Title { get; set; }
     public DateTime ReleaseDate { get; set; }

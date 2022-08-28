@@ -3,9 +3,9 @@ using WebApi.Models;
 
 namespace ConsoleApp.Fakers;
 
-public class OperationFaker: IFaker
+public class LibraryOpFaker: IFaker
 {
-    public OperationFaker() {}
+    public LibraryOpFaker() {}
 
     public Operation NewOperation()
     {
@@ -14,11 +14,23 @@ public class OperationFaker: IFaker
             Faker.Company.Name()
         );
     }
-}
 
-public class AttributeFaker: IFaker
-{
-    public AttributeFaker() {}
+    public Location NewLocation()
+    {
+        return new Location(
+            Faker.Name.Last(),
+            Faker.Name.First()
+        );
+    }
+
+    public Book NewBook()
+    {
+        // There isn't really a fake provider for this data
+        return new Book(
+            Faker.Name.FullName(),
+            Faker.Identification.DateOfBirth()
+        );
+    }
 
     public Publisher NewPublisher()
     {

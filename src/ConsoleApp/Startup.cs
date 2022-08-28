@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Microsoft.EntityFrameworkCore;
+
 using WebApi.Data;
 using WebApi.Models;
 
@@ -22,17 +24,23 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        var connString = Configuration.GetConnectionString("NpgsqlConnection");
+
+        services.AddDbContext<ApplicationDbContext>(opt =>
+        {
+            opt.UseNpgsql(connString);
+        });
+
+        // Controllers, endpoints, Transients, Services, what?
+
         // Configure your services here
         // services.AddDbContext<>
-        // var testFake = new OperationFaker();
-        // var sumVar = OperationFaker.NewOperation();
+
+        // // faker debug code
+        // var fake = new LibraryOpFaker();
+        // var sumVar = fake.NewAddress();
         // Console.WriteLine(sumVar);
         // Console.WriteLine(sumVar.ToString());
-
-        var af = new AttributeFaker();
-        var sumVar = af.NewAddress();
-        Console.WriteLine(sumVar);
-        Console.WriteLine(sumVar.ToString());
     }
 
     public void Configure(IApplicationBuilder app, IHostEnvironment env)
@@ -43,6 +51,6 @@ public class Startup
         }
 
         app.UseStaticFiles();
-        Console.WriteLine("Yay! you made it!");
+        // Console.WriteLine("Yay! you made it!");
     }
 }

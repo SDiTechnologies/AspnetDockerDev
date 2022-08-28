@@ -1,3 +1,8 @@
+// using Newtonsoft.Json;
+
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace WebApi.Models;
 
 // Book related Attributes
@@ -14,7 +19,7 @@ public class Publisher
     public string? PublisherName { get; set; }
 
     // debug override ToString() method
-    public string ToString()
+    public override string ToString()
     {
         return $"PublisherName: {PublisherName}";
     }
@@ -83,8 +88,12 @@ public class Address
     public string? PostalCode { get; set; }
 
     // debug override ToString() method
-    public string ToString()
+    public override string ToString()
     {
-        return $"AddressLn1: {AddressLn1}\nAddressLn2: {AddressLn2}\nCity: {City}\nState: {State}\nPostalCode: {PostalCode}";
+        // system.text.json + system.text.json.serialization
+        return JsonSerializer.Serialize(this);
+
+        // // newtonsoft.json
+        // return JsonConvert.SerializeObject(this);
     }
 }

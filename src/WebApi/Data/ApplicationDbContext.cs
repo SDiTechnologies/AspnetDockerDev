@@ -24,4 +24,10 @@ public class ApplicationDbContext : DbContext
     public DbSet<Genre> Genres { get; set; }
 
     public DbSet<Address> Addresses { get; set; }
+
+
+    // public void Seed(ApplicationDbContext context)
+    // {
+
+    // }
 }

@@ -108,4 +108,7 @@ faker data in csharp:
     - https://blog.elmah.io/easy-generation-of-fake-dummy-data-in-c-with-faker-net/
     - https://github.com/oriches/faker-cs
     - https://github.com/slashdotdash/faker-cs
+
+seperating data access from models and api:
+    - https://medium.com/oppr/net-core-using-entity-framework-core-in-a-separate-project-e8636f9dc9e5
 -->

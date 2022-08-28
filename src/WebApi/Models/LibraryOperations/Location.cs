@@ -2,6 +2,12 @@ namespace WebApi.Models;
 
 public class Location
 {
+    public Location() { }
+    public Location(string name, string alias)
+    {
+        LocationName = name;
+        LocationAlias = alias;
+    }
     public Guid Id { get; set; }
     // public int? LocationNumber { get; set; }
     public string? LocationName { get; set; }
