@@ -1,5 +1,5 @@
-using WebApi.Data.Models;
-using WebApi.Data.Models.Enums;
+using WebApi.Domain.Models;
+using WebApi.Domain.Models.Enums;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -1,4 +1,4 @@
-namespace WebApi.Data.Models.Enums
+namespace WebApi.Domain.Models.Enums
 {
     public enum RecipeDifficulty
     {

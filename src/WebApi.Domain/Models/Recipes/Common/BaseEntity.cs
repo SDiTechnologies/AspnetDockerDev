@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Data.Models.Common
+namespace WebApi.Domain.Models.Common
 {
     public abstract class BaseEntity
     {

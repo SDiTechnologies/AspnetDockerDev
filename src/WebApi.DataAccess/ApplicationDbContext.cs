@@ -10,7 +10,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using WebApi.Data.Models;
+using WebApi.Domain.Models;
 using System.IO;
 
 namespace WebApi.DataAccess

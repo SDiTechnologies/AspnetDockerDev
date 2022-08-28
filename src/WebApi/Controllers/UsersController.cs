@@ -3,9 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-// using MyCookingMaster.BL.Models;
-// using MyCookingMaster.DAL;
-using WebApi.Data.Models;
+using WebApi.Domain.Models;
 using WebApi.DataAccess;
 
 namespace WebApi.Controllers
