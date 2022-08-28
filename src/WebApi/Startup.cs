@@ -24,13 +24,19 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        var connectionString = Configuration.GetConnectionString("NpgsqlConnection");
+        // var connectionString = Configuration.GetConnectionString("NpgsqlConnection");
+
+        // services.AddDbContext<ApplicationDbContext>(options =>
+        // {
+        //     options.UseNpgsql(connectionString);
+        // });
+
+        var connectionString = Configuration.GetConnectionString("MssqlConnection");
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseNpgsql(connectionString);
+            options.UseSqlServer(connectionString);
         });
-
         // services.AddDbContext<ApplicationDbContext>(options =>
         //     options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 

@@ -25,6 +25,7 @@ namespace WebApi.DataAccess
 
         // Public Library Organizations objects
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
 
         public virtual DbSet<Address> Addresses { get; set; }
     }
@@ -39,10 +40,14 @@ namespace WebApi.DataAccess
                 .Build();
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            var connectionString = configuration.GetConnectionString("NpgsqlConnection");
+            // mssql
+            var connectionString = configuration.GetConnectionString("MssqlConnection");
+            builder.UseSqlServer(connectionString);
 
-            // builder.UseSqlServer(connectionString);
-            builder.UseNpgsql(connectionString);
+            // // pgsql
+            // var connectionString = configuration.GetConnectionString("NpgsqlConnection");
+            // builder.UseNpgsql(connectionString);
+
             return new ApplicationDbContext(builder.Options);
         }
     }

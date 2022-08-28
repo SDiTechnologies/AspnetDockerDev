@@ -81,7 +81,20 @@ namespace WebApi.DataAccess.Data
                     Console.WriteLine(address);
                 }
 
-                Console.WriteLine(addresses);
+                // context.Books.AddRange(books);
+                // context.SaveChanges();
+            }
+
+            if (!context.Authors.Any())
+            {
+                var authors = new List<Author>();
+                for (var i = 0; i < 10; i++)
+                {
+                    Author author = dataFaker.NewAuthor();
+                    authors.Add(author);
+                    Console.WriteLine(author);
+                }
+
 
                 // context.Books.AddRange(books);
                 // context.SaveChanges();

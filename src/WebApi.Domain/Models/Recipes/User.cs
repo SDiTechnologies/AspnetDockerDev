@@ -1,4 +1,4 @@
-using WebApi.Domain.Models.Common;
+using WebApi.Domain.Models.Common.Recipes;
 using System.Collections.Generic;
 // using System.ComponentModel.DataAnnotations.Schema;
 

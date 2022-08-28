@@ -4,8 +4,6 @@ namespace WebApi.DataFaker;
 
 public partial class DataProvider
 {
-    // public DataProvider() { }
-
     public Address NewAddress()
     {
         return new Address(
