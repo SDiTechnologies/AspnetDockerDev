@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
+using WebApi.DataFaker;
+
 namespace WebApi.DataAccess.Data
 {
     public class DataSeeder
     {
         public static void Initialize(ApplicationDbContext context)
         {
+            DataProvider dataFaker = new DataProvider();
             if (!context.Users.Any())
             {
                 var users = new List<User>()
@@ -44,13 +47,28 @@ namespace WebApi.DataAccess.Data
 
             if (!context.Books.Any())
             {
-                var books = new List<Book>()
+                var books = new List<Book>();
+                for (var i = 0; i < 10; i++)
                 {
-                    new Book { /* Id = 1 */ Title = "You Left Me In San Fran Cheesy", ReleaseDate = DateTime.UtcNow },
-                    new Book { /* Id = 2 */ Title = "Pasta La Vista, Baby",  ReleaseDate = DateTime.UtcNow}
-                };
-                context.Books.AddRange(books);
-                context.SaveChanges();
+                    Book book = dataFaker.NewBook();
+                    books.Add(book);
+                    Console.WriteLine(book);
+                }
+
+                Console.WriteLine(books);
+
+                // var books = new List<Book>()
+                // {
+                //     new Book { /* Id = 1 */ Title = "You Left Me In San Fran Cheesy", ReleaseDate = DateTime.UtcNow },
+                //     new Book { /* Id = 2 */ Title = "Pasta La Vista, Baby",  ReleaseDate = DateTime.UtcNow}
+                // };
+                // var books = new List<Book>()
+                // {
+                //     bookFaker.NewBook(),
+                //     bookFaker.NewBook()
+                // };
+                // context.Books.AddRange(books);
+                // context.SaveChanges();
             }
 
         }

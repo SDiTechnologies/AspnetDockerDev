@@ -12,7 +12,7 @@ using WebApi.DataAccess;
 namespace WebApi.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220828192409_Create")]
+    [Migration("20220828200518_Create")]
     partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

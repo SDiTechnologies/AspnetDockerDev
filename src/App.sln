@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.DataAccess", "WebApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Domain", "WebApi.Domain\WebApi.Domain.csproj", "{E87B7A4E-767D-4B03-BC77-6FB7A1633F7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.DataFaker", "WebApi.DataFaker\WebApi.DataFaker.csproj", "{5F972807-4C54-4176-8F44-3A4CF1F67FCF}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +60,17 @@ Global
 		{E87B7A4E-767D-4B03-BC77-6FB7A1633F7A}.Release|x64.Build.0 = Release|Any CPU
 		{E87B7A4E-767D-4B03-BC77-6FB7A1633F7A}.Release|x86.ActiveCfg = Release|Any CPU
 		{E87B7A4E-767D-4B03-BC77-6FB7A1633F7A}.Release|x86.Build.0 = Release|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Debug|x64.Build.0 = Debug|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Debug|x86.Build.0 = Debug|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Release|x64.ActiveCfg = Release|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Release|x64.Build.0 = Release|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F972807-4C54-4176-8F44-3A4CF1F67FCF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

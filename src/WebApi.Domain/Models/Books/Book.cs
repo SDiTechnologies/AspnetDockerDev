@@ -1,3 +1,7 @@
+// using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace WebApi.Domain.Models;
 
 public class Book
@@ -19,8 +23,12 @@ public class Book
     // public DateTime Updated
 
     // debug override ToString() method
-    public string ToString()
+    public override string ToString()
     {
-        return $"Title: {Title}\nReleaseDate: {ReleaseDate}";
+        // system.text.json + system.text.json.serialization
+        return JsonSerializer.Serialize(this);
+
+        // // newtonsoft.json
+        // return JsonConvert.SerializeObject(this);
     }
 }
