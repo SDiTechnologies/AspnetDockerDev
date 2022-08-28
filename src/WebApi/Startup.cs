@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 using WebApi.DataAccess;
 
 namespace WebApi;
@@ -30,17 +33,27 @@ public class Startup
         // services.AddDbContext<ApplicationDbContext>(options =>
         //     options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
 
-        services.AddControllers();
+        // services.AddMvc(opt => opt.EnableEndpointRouting = false);
+
+        services.AddControllers()
+            .AddJsonOptions(opt =>
+            {
+                opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
         // services.AddMvc()
         //     // .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
         //     .AddJsonOptions(options =>
-        //     // .AddNewtonsoftJson(options =>
         //     {
-        //         // options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        //         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
         //     });
+        //     // // .AddNewtonsoftJson(options =>
+        //     // {
+        //     //     // options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        //     // });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,9 +72,16 @@ public class Startup
         }
 
         // app.UseHttpsRedirection();
-        app.UseMvc();
+        // app.UseMvc();
 
         // app.UseAuthorization();
         // app.MapControllers();
+
+        app.UseRouting();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+
     }
 }
