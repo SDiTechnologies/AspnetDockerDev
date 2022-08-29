@@ -6,10 +6,11 @@ using Microsoft.Extensions.Hosting;
 
 using Microsoft.EntityFrameworkCore;
 
-using WebApi.Data;
-using WebApi.Models;
+using WebApi.DataAccess;
+using WebApi.Domain.Models;
 
-using ConsoleApp.Fakers;
+using WebApi.DataFaker;
+
 
 namespace ConsoleApp;
 
@@ -24,12 +25,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        var connString = Configuration.GetConnectionString("NpgsqlConnection");
+        // var connString = Configuration.GetConnectionString("NpgsqlConnection");
 
-        services.AddDbContext<ApplicationDbContext>(opt =>
-        {
-            opt.UseNpgsql(connString);
-        });
+        // services.AddDbContext<ApplicationDbContext>(opt =>
+        // {
+        //     opt.UseNpgsql(connString);
+        // });
 
         // Controllers, endpoints, Transients, Services, what?
 
@@ -41,6 +42,11 @@ public class Startup
         // var sumVar = fake.NewAddress();
         // Console.WriteLine(sumVar);
         // Console.WriteLine(sumVar.ToString());
+
+        var dataFaker = new DataProvider();
+        var fake = dataFaker.NewLocation();
+        // var fake = dataFaker.NewOrganization();
+        Console.WriteLine(fake);
     }
 
     public void Configure(IApplicationBuilder app, IHostEnvironment env)

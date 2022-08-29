@@ -19,6 +19,8 @@ public class Program
             try
             {
                 var context = services.GetRequiredService<ApplicationDbContext>();
+                // split initializers into seperate methods in WebApi.DataAccess
+                DataSeeder.InitializeRecipes(context);
                 DataSeeder.Initialize(context);
             }
             catch (Exception)

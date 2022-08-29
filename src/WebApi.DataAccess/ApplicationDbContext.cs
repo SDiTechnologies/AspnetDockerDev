@@ -1,12 +1,3 @@
-// public class ApplicationDbContext : DbContext
-// {
-//    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
-//    public virtual DbSet<User> Users { get; set; }
-//    public virtual DbSet<Recipe> Recipes { get; set; }
-//    public virtual DbSet<Ingredient> Ingredients { get; set; }
-// }
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -24,9 +15,14 @@ namespace WebApi.DataAccess
         public virtual DbSet<Ingredient> Ingredients { get; set; }
 
         // Public Library Organizations objects
+        public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+
+
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
-
+        public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
     }
 

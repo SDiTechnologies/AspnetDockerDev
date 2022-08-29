@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess;
 
@@ -11,9 +12,10 @@ using WebApi.DataAccess;
 namespace WebApi.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220829003848_Create")]
+    partial class Create
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,9 +96,6 @@ namespace WebApi.DataAccess.Migrations
                     b.Property<Guid>("LocationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PublisherId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -109,8 +108,6 @@ namespace WebApi.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
-
-                    b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
                 });
@@ -157,6 +154,9 @@ namespace WebApi.DataAccess.Migrations
                     b.Property<string>("LocationName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
@@ -166,6 +166,8 @@ namespace WebApi.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("OrganizationId");
 
@@ -219,9 +221,6 @@ namespace WebApi.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrganizationName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrganizationSlogan")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated")
@@ -323,15 +322,7 @@ namespace WebApi.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApi.Domain.Models.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Location");
-
-                    b.Navigation("Publisher");
                 });
 
             modelBuilder.Entity("WebApi.Domain.Models.Ingredient", b =>
@@ -352,6 +343,10 @@ namespace WebApi.DataAccess.Migrations
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WebApi.Domain.Models.Member", null)
+                        .WithMany("Locations")
+                        .HasForeignKey("MemberId");
 
                     b.HasOne("WebApi.Domain.Models.Organization", "Organization")
                         .WithMany("Locations")
@@ -394,6 +389,11 @@ namespace WebApi.DataAccess.Migrations
             modelBuilder.Entity("WebApi.Domain.Models.Location", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("WebApi.Domain.Models.Member", b =>
+                {
+                    b.Navigation("Locations");
                 });
 
             modelBuilder.Entity("WebApi.Domain.Models.Organization", b =>

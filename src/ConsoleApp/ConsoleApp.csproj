@@ -22,6 +22,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebApi\WebApi.csproj" />
+    <ProjectReference Include="..\WebApi.DataFaker\WebApi.DataFaker.csproj" />
+    <ProjectReference Include="..\WebApi.DataAccess\WebApi.DataAccess.csproj" />
+    <ProjectReference Include="..\WebApi.Domain\WebApi.Domain.csproj" />
   </ItemGroup>
 
 </Project>

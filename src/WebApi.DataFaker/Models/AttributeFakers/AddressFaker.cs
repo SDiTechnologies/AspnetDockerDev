@@ -6,12 +6,13 @@ public partial class DataProvider
 {
     public Address NewAddress()
     {
-        return new Address(
-            Faker.Address.StreetAddress(),
-            Faker.Address.SecondaryAddress(),
-            Faker.Address.City(),
-            Faker.Address.UsStateAbbr(),
-            Faker.Address.ZipCode()
-        );
+        return new Address
+        {
+            AddressLn1 = Faker.Address.StreetAddress(),
+            AddressLn2 = Faker.Address.SecondaryAddress(),
+            City = Faker.Address.City(),
+            State = Faker.Address.UsStateAbbr(),
+            PostalCode = Faker.Address.ZipCode()
+        };
     }
 }

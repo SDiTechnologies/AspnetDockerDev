@@ -46,6 +46,8 @@ public class Startup
             .AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                // opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                opt.JsonSerializerOptions.WriteIndented = true;
             });
 
         services.AddEndpointsApiExplorer();

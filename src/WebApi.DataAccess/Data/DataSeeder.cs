@@ -10,9 +10,32 @@ namespace WebApi.DataAccess.Data
 {
     public class DataSeeder
     {
+        private static int _iter = 10;
+
         public static void Initialize(ApplicationDbContext context)
         {
-            DataProvider dataFaker = new DataProvider();
+            var dataFaker = new DataProvider();
+            // // where to begin?
+            // if (!)
+            // // seed organizations
+            if (!context.Organizations.Any())
+            {
+                var orgs = new List<Organization>();
+                for (int i = 0; i < _iter; i++)
+                {
+                    var org = dataFaker.NewOrganization();
+                    orgs.Add(org);
+                    Console.WriteLine(org);
+                }
+
+
+            }
+        }
+
+
+        public static void InitializeRecipes(ApplicationDbContext context)
+        {
+            // DataProvider dataFaker = new DataProvider();
             if (!context.Users.Any())
             {
                 var users = new List<User>()
@@ -45,61 +68,51 @@ namespace WebApi.DataAccess.Data
                 context.SaveChanges();
             }
 
-            if (!context.Books.Any())
-            {
-                var books = new List<Book>();
-                for (var i = 0; i < 10; i++)
-                {
-                    Book book = dataFaker.NewBook();
-                    books.Add(book);
-                    Console.WriteLine(book);
-                }
 
-                Console.WriteLine(books);
+            ///// DEBUG BELOW!
 
-                // var books = new List<Book>()
-                // {
-                //     new Book { /* Id = 1 */ Title = "You Left Me In San Fran Cheesy", ReleaseDate = DateTime.UtcNow },
-                //     new Book { /* Id = 2 */ Title = "Pasta La Vista, Baby",  ReleaseDate = DateTime.UtcNow}
-                // };
-                // var books = new List<Book>()
-                // {
-                //     bookFaker.NewBook(),
-                //     bookFaker.NewBook()
-                // };
-                // context.Books.AddRange(books);
-                // context.SaveChanges();
-            }
+            // if (!context.Books.Any())
+            // {
+            //     var books = new List<Book>();
+            //     for (var i = 0; i < 10; i++)
+            //     {
+            //         Book book = dataFaker.NewBook();
+            //         books.Add(book);
+            //         Console.WriteLine(book);
+            //     }
+            //     context.Books.AddRange(books);
+            //     context.SaveChanges();
+            // }
 
-            if (!context.Addresses.Any())
-            {
-                var addresses = new List<Address>();
-                for (var i = 0; i < 10; i++)
-                {
-                    Address address = dataFaker.NewAddress();
-                    addresses.Add(address);
-                    Console.WriteLine(address);
-                }
+            // if (!context.Addresses.Any())
+            // {
+            //     var addresses = new List<Address>();
+            //     for (var i = 0; i < 10; i++)
+            //     {
+            //         Address address = dataFaker.NewAddress();
+            //         addresses.Add(address);
+            //         Console.WriteLine(address);
+            //     }
+            //     context.Addresses.AddRange(addresses);
+            //     context.SaveChanges();
+            // }
 
-                // context.Books.AddRange(books);
-                // context.SaveChanges();
-            }
-
-            if (!context.Authors.Any())
-            {
-                var authors = new List<Author>();
-                for (var i = 0; i < 10; i++)
-                {
-                    Author author = dataFaker.NewAuthor();
-                    authors.Add(author);
-                    Console.WriteLine(author);
-                }
-
-
-                // context.Books.AddRange(books);
-                // context.SaveChanges();
-            }
+            // if (!context.Authors.Any())
+            // {
+            //     var authors = new List<Author>();
+            //     for (var i = 0; i < 10; i++)
+            //     {
+            //         Author author = dataFaker.NewAuthor();
+            //         authors.Add(author);
+            //         Console.WriteLine(author);
+            //     }
+            //     context.Authors.AddRange(authors);
+            //     context.SaveChanges();
+            // }
 
         }
+
+
+
     }
 }
