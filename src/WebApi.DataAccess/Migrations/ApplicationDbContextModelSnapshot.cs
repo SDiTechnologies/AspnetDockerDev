@@ -94,9 +94,6 @@ namespace WebApi.DataAccess.Migrations
                     b.Property<Guid>("LocationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PublisherId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -109,8 +106,6 @@ namespace WebApi.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
-
-                    b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
                 });
@@ -323,15 +318,7 @@ namespace WebApi.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApi.Domain.Models.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Location");
-
-                    b.Navigation("Publisher");
                 });
 
             modelBuilder.Entity("WebApi.Domain.Models.Ingredient", b =>

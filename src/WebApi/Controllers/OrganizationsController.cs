@@ -24,10 +24,14 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Organization>>> GetOrganizations()
         {
+            // not lean
             return await _context.Organizations
-                .Include(x => x.Locations)
-                .ThenInclude(x => x.Books)
-                .ToListAsync();
+                            .Include(x => x.Locations)
+                            .ThenInclude(x => x.Address)
+                            .Include(x => x.Locations)
+                            // .ThenInclude(x => x.Addresses)
+                            .ThenInclude(x => x.Books)
+                            .ToListAsync();
         }
 
         // GET: api/Organizations/5

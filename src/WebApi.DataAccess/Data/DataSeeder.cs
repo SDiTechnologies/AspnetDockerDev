@@ -10,13 +10,13 @@ namespace WebApi.DataAccess.Data
 {
     public class DataSeeder
     {
-        private static int _iter = 10;
+        private static int _iter = 5;
 
         public static void Initialize(ApplicationDbContext context)
         {
             var dataFaker = new DataProvider();
             // // where to begin?
-            // if (!)
+
             // // seed organizations
             if (!context.Organizations.Any())
             {
@@ -25,11 +25,45 @@ namespace WebApi.DataAccess.Data
                 {
                     var org = dataFaker.NewOrganization();
                     orgs.Add(org);
-                    Console.WriteLine(org);
+                    // Console.WriteLine(org);
                 }
-
-
+                context.Organizations.AddRange(orgs);
+                context.SaveChanges();
             }
+
+            if (!context.Locations.Any())
+            {
+
+                var locs = new List<Location>();
+
+                var orgs = context.Organizations.ToArray();
+                foreach (var org in orgs)
+                {
+                    for (int i = 0; i < _iter; i++)
+                    {
+                        var loc = dataFaker.NewLocation(org);
+                        locs.Add(loc);
+                        // Console.WriteLine("Printing output:");
+                        Console.WriteLine(loc);
+                    }
+                    context.Locations.AddRange(locs);
+                    context.SaveChanges();
+                }
+            }
+
+            // // Addresses are added with locations
+            // if (!context.Addresses.Any())
+            // {
+            //     var addrs = new List<Address>();
+            //     for (int i = 0; i < _iter; i++)
+            //     {
+            //         var addr = dataFaker.NewAddress();
+            //         addrs.Add(addr);
+            //         // Console.WriteLine(addr);
+            //     }
+            // }
+
+
         }
 
 

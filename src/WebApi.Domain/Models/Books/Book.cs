@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-// using System.Text.Json;
+using System.Text.Json;
 // using System.Text.Json.Serialization;
 
 using WebApi.Domain.Models.Common;
@@ -19,9 +19,9 @@ public class Book : BaseEntity
 
     public IEnumerable<Author>? Authors { get; set; }
 
-    [ForeignKey("Publisher")]
-    public Guid PublisherId { get; set; }
-    public Publisher? Publisher { get; set; }
+    // [ForeignKey("Publisher")]
+    // public Guid PublisherId { get; set; }
+    // public Publisher? Publisher { get; set; }
 
 
     [ForeignKey("Location")]
@@ -40,13 +40,13 @@ public class Book : BaseEntity
     // public DateTime Created
     // public DateTime Updated
 
-    // // debug override ToString() method
-    // public override string ToString()
-    // {
-    //     // system.text.json + system.text.json.serialization
-    //     return JsonSerializer.Serialize(this);
+    // debug override ToString() method
+    public override string ToString()
+    {
+        // system.text.json + system.text.json.serialization
+        return JsonSerializer.Serialize(this);
 
-    //     // // newtonsoft.json
-    //     // return JsonConvert.SerializeObject(this);
-    // }
+        // // newtonsoft.json
+        // return JsonConvert.SerializeObject(this);
+    }
 }

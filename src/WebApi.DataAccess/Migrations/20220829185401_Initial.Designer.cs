@@ -12,8 +12,8 @@ using WebApi.DataAccess;
 namespace WebApi.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220829003848_Create")]
-    partial class Create
+    [Migration("20220829185401_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,9 +154,6 @@ namespace WebApi.DataAccess.Migrations
                     b.Property<string>("LocationName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("MemberId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
@@ -166,8 +163,6 @@ namespace WebApi.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("MemberId");
 
                     b.HasIndex("OrganizationId");
 
@@ -221,6 +216,9 @@ namespace WebApi.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationSlogan")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated")
@@ -344,10 +342,6 @@ namespace WebApi.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApi.Domain.Models.Member", null)
-                        .WithMany("Locations")
-                        .HasForeignKey("MemberId");
-
                     b.HasOne("WebApi.Domain.Models.Organization", "Organization")
                         .WithMany("Locations")
                         .HasForeignKey("OrganizationId")
@@ -389,11 +383,6 @@ namespace WebApi.DataAccess.Migrations
             modelBuilder.Entity("WebApi.Domain.Models.Location", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("WebApi.Domain.Models.Member", b =>
-                {
-                    b.Navigation("Locations");
                 });
 
             modelBuilder.Entity("WebApi.Domain.Models.Organization", b =>

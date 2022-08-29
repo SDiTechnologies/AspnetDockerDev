@@ -5,8 +5,8 @@
 // using Microsoft.AspNetCore.Http;
 // using Microsoft.AspNetCore.Mvc;
 // using Microsoft.EntityFrameworkCore;
-// using WebApi.Data;
-// using WebApi.Models;
+// using WebApi.DataAccess;
+// using WebApi.Domain.Models;
 
 // namespace WebApi.Controllers
 // {

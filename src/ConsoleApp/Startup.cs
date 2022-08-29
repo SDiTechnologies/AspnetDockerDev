@@ -44,8 +44,8 @@ public class Startup
         // Console.WriteLine(sumVar.ToString());
 
         var dataFaker = new DataProvider();
-        var fake = dataFaker.NewLocation();
         // var fake = dataFaker.NewOrganization();
+        var fake = dataFaker.NewLocation();
         Console.WriteLine(fake);
     }
 

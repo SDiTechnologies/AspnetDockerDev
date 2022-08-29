@@ -1,3 +1,4 @@
+using System;
 using WebApi.Domain.Models;
 
 namespace WebApi.DataFaker;
@@ -6,19 +7,31 @@ public partial class DataProvider
 {
     public Location NewLocation()
     {
-        // var locationAddress = NewAddress();
+        return new Location
+        {
+            LocationName = Faker.Company.Name(),
+            LocationAlias = Faker.Company.Name(),
+            Address = NewAddress()
+
+            // Organization = NewOrganization()
+            // // OrganizationSlogan = Faker.Company.CatchPhrase()
+            // AddressId = locationAddress.Id,
+            // Address = locationAddress,
+        };
+    }
+    public Location NewLocation(Organization org)
+    {
         return new Location
         {
             LocationName = Faker.Company.Name(),
             LocationAlias = Faker.Company.Name(),
             Address = NewAddress(),
-            // Organization
-            Organization = NewOrganization()
+            OrganizationId = org.Id,
+            Organization = org
+            // Organization = NewOrganization()
             // // OrganizationSlogan = Faker.Company.CatchPhrase()
             // AddressId = locationAddress.Id,
             // Address = locationAddress,
-
-
         };
     }
 }
