@@ -15,8 +15,6 @@ public partial class DataProvider
 
             // Organization = NewOrganization()
             // // OrganizationSlogan = Faker.Company.CatchPhrase()
-            // AddressId = locationAddress.Id,
-            // Address = locationAddress,
         };
     }
     public Location NewLocation(Organization org)
@@ -28,10 +26,6 @@ public partial class DataProvider
             Address = NewAddress(),
             OrganizationId = org.Id,
             Organization = org
-            // Organization = NewOrganization()
-            // // OrganizationSlogan = Faker.Company.CatchPhrase()
-            // AddressId = locationAddress.Id,
-            // Address = locationAddress,
         };
     }
 }
