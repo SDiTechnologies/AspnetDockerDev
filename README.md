@@ -112,3 +112,21 @@ faker data in csharp:
 seperating data access from models and api:
     - https://medium.com/oppr/net-core-using-entity-framework-core-in-a-separate-project-e8636f9dc9e5
 -->
+
+
+
+
+
+
+<!-- Refocus session:
+
+Current projects:
+    - WebApi - home to the web API actions
+    - WebApi.Domain - home to the models
+    - WebApi.DataAccess - home to the DataAccess layer, migrations, database ops like seeding.
+    - WebApi.DataFaker - home to a fake data generator for seeding the db
+
+Next Steps:
+    - Construct proper data model for organization -> library -> members structure; Start with organization -> book collection
+
+ -->

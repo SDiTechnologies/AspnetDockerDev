@@ -1,74 +1,114 @@
-﻿// See https://aka.ms/new-console-template for more information
-// Console.WriteLine("Hello, World!");
-using System.Linq;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
-using WebApi.Data;
-
+using System;
+using System.Text;
 
 namespace ConsoleApp;
 
-// // Async style app
-// public class Program
-// {
-//     public static async Task Main(string[] args)
-//     {
-//         // CreateHostBuilder(args).Build().Run();
-//         var host = CreateHostBuilder(args).Build();
-//         await host.RunAsync();
-//     }
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        string homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string path = $"{homeDir}/Downloads/csharptest/test.txt";
+        var pathDir = Path.GetDirectoryName(path);
+        var customerList = new List<string>();
 
-//     public static IHostBuilder CreateHostBuilder(string[] args) =>
-//         Host.CreateDefaultBuilder(args)
-//             .ConfigureLogging(logging => logging.ClearProviders())
-//             .ConfigureWebHostDefaults(builder =>
-//             {
-//                 builder.UseStartup<Startup>();
-//             });
-//             // .UseStartup<Startup>();
+        // create directory if not exists
+        if (!Directory.Exists(pathDir))
+        {
+            Directory.CreateDirectory(pathDir);
+        }
 
+        // create file if not exists
+        if (!File.Exists(path))
+        {
+            File.Create(path);
+        }
 
-//     // public static IHostBuilder CreateHostBuilder(string[] args) =>
-//     //     Host.CreateDefaultBuilder(args)
-//     //         .ConfigureLogging(logging => logging.ClearProviders())
-//     //         .ConfigureWebHostDefaults(webBuilder =>
-//     //         {
-//     //             webBuilder.UseNLogWeb();
-//     //             webBuilder.UseStartup<Startup>();
-//     //         });
-// }
+        // solution using key prompt for input
+        while(true)
+        {
+                string inputString;
 
+                Console.WriteLine("Press <ESCAPE> to write customers to file and exit -or- Press <ANY KEY> to add a customer");
+                ConsoleKeyInfo inputKey = Console.ReadKey();
 
+                if (inputKey.Key == ConsoleKey.Escape)
+                {
+                    inputString = null;
+                    break;
+                }
+                else
+                {
+                    Console.Write("Enter Customer Information: ");
+                    inputString = Console.ReadLine();
+                    customerList.Add(inputString);
+                }
+        }
 
-// // debug sync below
-// public class Program
-// {
-//     static void Main(string[] args)
-//     {
-//         PerformDatabaseOperations();
-//     }
+        // // solution using string builder; works, kind of?
+        // var stringBuilder = new StringBuilder();
+        // while(true)
+        // {
+        //         string inputString;
+        //         // while ((input = Console.ReadLine()) != null)
+        //         // {
+        //         //     customerList.Add(input);
+        //         // }
+        //         // // Works; Kind of...
+        //         ConsoleKeyInfo inputKey = Console.ReadKey();
 
-//     public static void PerformDatabaseOperations()
-//     {
-//         using (var db = new ApplicationDbContext())
-//         {
-//             db.Operations.Add(new Operation
-//             {
-//                 name = "test op",
-//                 alias = "test op alias"
-//             });
+        //         if (inputKey.Key == ConsoleKey.Enter)
+        //         {
+        //             inputString = stringBuilder.ToString();
+        //             customerList.Add(inputString);
+        //             stringBuilder.Clear();
+        //         }
+        //         else if (inputKey.Key == ConsoleKey.Escape)
+        //         {
+        //             inputString = null;
+        //             break;
+        //         }
+        //         else
+        //         {
+        //             stringBuilder.Append(inputKey.KeyChar);
+        //         }
+        // }
 
-//             db.SaveChanges();
+        try
+        {
 
-//             var ops = (from o in db.Operations
-//                        orderby o.OperationName
-//                        select o).ToList();
-//             foreach (var e in ops)
-//             {
-//                 Console.WriteLine($"{e.OperationName}");
-//             }
-//         }
-//     }
-// }
+            // write to file
+            using (var fileStream = new FileStream(path, FileMode.Append))
+            {
+                using (var writer = new StreamWriter(fileStream))
+                {
+                    foreach (string customer in customerList)
+                    {
+                        writer.WriteLine(customer);
+                    }
+                }
+            }
+
+            // read from file and print
+            using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new StreamReader(fileStream))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        Console.WriteLine(reader.ReadLine());
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception: {ex.Message}");
+        }
+        finally
+        {
+            Console.WriteLine($"Yay! Completion!");
+        }
+
+    }
+}

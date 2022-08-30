@@ -1,51 +1,37 @@
-using Microsoft.EntityFrameworkCore;
-using WebApi.Models;
-using WebApi.Data;
+using System;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using WebApi.DataAccess;
+using WebApi.DataAccess.Data;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace WebApi;
 
-// Add services to the container.
-
-// // use in-memory db
-// builder.Services.AddDbContext<ApplicationDbContext>(opt =>
-//     opt.UseInMemoryDatabase("TodoList"));
-
-// // use sqlite
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseSqlite(connectionString));
-
-// use a proper database connection...
-// use postgres
-var connectionString = builder.Configuration.GetConnectionString("NpgsqlConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
-
-// // use mssqlserver
-// var connectionString = builder.Configuration.GetConnectionString("MssqlConnection");
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseSqlServer(connectionString));
-
-builder.Services.AddControllers();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        var host = CreateWebHostBuilder(args).Build();
+
+        using (var scope = host.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            try
+            {
+                var context = services.GetRequiredService<ApplicationDbContext>();
+                // split initializers into seperate methods in WebApi.DataAccess
+                DataSeeder.InitializeRecipes(context);
+                DataSeeder.Initialize(context);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error occurred while seeding the database.");
+            }
+        }
+        host.Run();
+    }
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
 }
-
-// app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
